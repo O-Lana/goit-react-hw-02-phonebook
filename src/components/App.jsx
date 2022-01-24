@@ -1,3 +1,5 @@
+import { GlobalStyle } from "../GlobalStyled/GlobalStyle";
+import { Container, Title, Subtitle } from './App.slyled';
 import { Component } from "react";
 import { ContactForm } from "./ContactForm/ContactForm";
 import { ContactList } from "./ContactList/ContactList";
@@ -50,29 +52,29 @@ export class App extends Component {
     );
   };
 
-  //!доделать
-  // deleteContact = id => {
-  //   this.setState(prevState => ({
-  //     contacts: prevState.contact.filter(contact => contact.id !== id)
-  //   }));
-  // };
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+    }));
+  };
 
   render() {
     const { filter } = this.state;
     const visibleContact = this.getContact();
 
     return (
-      <>
-        <h1>Phonebook</h1>
+      <Container>
+        <GlobalStyle />
+        <Title>Phonebook</Title>
         <ContactForm onSubmit={this.addContacts} />
 
-        <h2>Contacts</h2>
+        <Subtitle>Contacts</Subtitle>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContact}
           onDeleteContact={this.deleteContact}
         />
-      </>
+      </Container>
     );
   }
 }

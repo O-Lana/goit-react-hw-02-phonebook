@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { Component } from "react";
+import { Form, Input, Button } from './ContactForm.styled';
 
 
 export class ContactForm extends Component {
@@ -29,10 +31,10 @@ export class ContactForm extends Component {
         const { name, number } = this.state;
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="">
+            <Form onSubmit={this.handleSubmit}>
+                <label>
                     Name
-                    <input
+                    <Input
                     type="text"
                     name="name"
                     value={name}
@@ -42,9 +44,9 @@ export class ContactForm extends Component {
                     onChange={this.handleInputChange}
                     />
                 </label>
-                <label htmlFor="">
+                <label>
                     Number
-                    <input
+                    <Input
                     type="tel"
                     name="number"
                     value={number}
@@ -54,8 +56,12 @@ export class ContactForm extends Component {
                     onChange={this.handleInputChange}
                     />
                 </label>
-                <button type="submit">Add contact</button>
-            </form>
+                <Button type="submit">Add contact</Button>
+            </Form>
         )
     }
 }
+
+ContactForm.protoType = {
+    onSubmit: PropTypes.function.isRequired,
+};
